@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="401e76f9-fcbb-4d29-94ad-e043fe2236c4" name="Default Changelist" comment="" />
+    <list default="true" id="401e76f9-fcbb-4d29-94ad-e043fe2236c4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/ddpg.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ddpg.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/train_ddpg.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/train_ddpg.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unity-environment.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/unity-environment.log" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,13 +35,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="json" value="26" />
-          <entry key="py" value="954" />
+          <entry key="py" value="1073" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSON" value="26" />
-          <entry key="Python" value="954" />
+          <entry key="Python" value="1073" />
         </counts>
       </usages-collector>
     </session>
@@ -56,8 +60,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/train_ddpg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+            <state relative-caret-position="331">
+              <caret line="26" column="72" lean-forward="true" selection-start-line="26" selection-start-column="72" selection-end-line="26" selection-end-column="72" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -89,11 +93,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/play.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="22" column="31" lean-forward="true" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+            <state relative-caret-position="100">
+              <caret line="5" column="46" lean-forward="true" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -113,11 +117,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ddpg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="110" selection-start-line="110" selection-end-line="110" />
+            <state relative-caret-position="398">
+              <caret line="134" column="132" selection-start-line="134" selection-start-column="132" selection-end-line="134" selection-end-column="132" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -167,13 +171,13 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/environment.py" />
-        <option value="$PROJECT_DIR$/src/ddpg.py" />
-        <option value="$PROJECT_DIR$/src/train_ddpg.py" />
         <option value="$PROJECT_DIR$/config.json" />
         <option value="$PROJECT_DIR$/src/models.py" />
         <option value="$PROJECT_DIR$/src/ppo.py" />
         <option value="$PROJECT_DIR$/src/train_ppo.py" />
         <option value="$PROJECT_DIR$/src/play.py" />
+        <option value="$PROJECT_DIR$/src/train_ddpg.py" />
+        <option value="$PROJECT_DIR$/src/ddpg.py" />
       </list>
     </option>
   </component>
@@ -219,7 +223,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.play">
+  <component name="RunManager" selected="Python.train_ddpg">
     <configuration name="play" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Udacity_drl_p3" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -290,9 +294,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.train_ddpg" />
         <item itemvalue="Python.play" />
         <item itemvalue="Python.train_ppo" />
-        <item itemvalue="Python.train_ddpg" />
       </list>
     </recent_temporary>
   </component>
@@ -322,8 +326,8 @@
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" />
       <window_info anchor="bottom" id="Version Control" order="5" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.32981783" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.39980826" />
+      <window_info anchor="bottom" id="Run" order="6" weight="0.32981783" />
+      <window_info active="true" anchor="bottom" id="Debug" order="7" visible="true" weight="0.39980826" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="10" />
@@ -357,6 +361,16 @@
           <url>file://$PROJECT_DIR$/src/ppo.py</url>
           <line>80</line>
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/ddpg.py</url>
+          <line>135</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/ddpg.py</url>
+          <line>134</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -424,16 +438,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ddpg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="110" selection-start-line="110" selection-end-line="110" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -457,16 +461,6 @@
           <caret line="58" column="27" lean-forward="true" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/train_ddpg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -503,10 +497,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/play.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="22" column="31" lean-forward="true" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+        <state relative-caret-position="100">
+          <caret line="5" column="46" lean-forward="true" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/train_ddpg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="26" column="72" lean-forward="true" selection-start-line="26" selection-start-column="72" selection-end-line="26" selection-end-column="72" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ddpg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="134" column="132" selection-start-line="134" selection-start-column="132" selection-end-line="134" selection-end-column="132" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>

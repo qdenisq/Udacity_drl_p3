@@ -15,7 +15,7 @@ def train(*args, **kwargs):
     env = ReacherEnvironment(**kwargs['env'])
     env.reset(train_mode=True)
 
-    state_dim = env.get_state_dim()*2
+    state_dim = env.get_state_dim()
     action_dim = env.get_action_dim()
     kwargs['agent']['state_dim'] = state_dim
     kwargs['agent']['action_dim'] = action_dim
@@ -25,7 +25,7 @@ def train(*args, **kwargs):
     agent = SimpleDDPGAgent(**kwargs['agent'])
     target_agent = SimpleDDPGAgent(**kwargs['agent'])
     alg = DDPG(agent=agent, target_agent=target_agent, **kwargs['ddpg'])
-    scores = alg.train(env, 2000)
+    scores = alg.train(env, 5000)
 
     dt = str(datetime.datetime.now().strftime("%m_%d_%Y_%I_%M_%p"))
     model_fname = "../models/ddpg_reacher_{}.pt".format(dt)

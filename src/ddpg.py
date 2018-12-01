@@ -86,7 +86,7 @@ class DDPG:
                 # step
                 inp_state = np.concatenate([state, np.flip(state, axis=0)], axis=1)
 
-                action = self.agent.act(torch.Tensor(inp_state)).detach().cpu().numpy()
+                action = self.agent.act(torch.Tensor(state)).detach().cpu().numpy()
                 noise = [noise_gen.sample() for _ in range(env.get_num_agents())]
                 noised_action = action + noise
                 noised_action = np.clip(noised_action, -1., 1.)
@@ -96,8 +96,8 @@ class DDPG:
 
                 # add experience to replay buffer
                 for i in range(action.shape[0]):
-                    self.replay_buffer.add(np.concatenate([state, np.flip(state, axis=0)], axis=1)[i], action[i], reward[i],
-                                           np.concatenate([next_state, np.flip(next_state, axis=0)], axis=1)[i], done[i])
+                    self.replay_buffer.add(state[i], action[i], reward[i],
+                                           next_state[i], done[i])
 
                 state = next_state
 
@@ -132,6 +132,6 @@ class DDPG:
                 if np.any(done):
                     break
 
-            print("episode: {:d} | score: {}".format(episode, score))
-            scores.append(score)
+            print("episode: {:d} | score: {} | avg_score: {:.2f}".format(episode, score, np.mean(scores[max(-100, -len(scores)+1):])))
+            scores.append(max(score))
         return scores
