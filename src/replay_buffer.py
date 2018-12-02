@@ -19,11 +19,11 @@ class ReplayBuffer:
     def sample(self):
         k = self.__minibatch_size
         experiences = random.sample(self.__deque, k)
-        states = torch.from_numpy(np.vstack([e.state for e in experiences if e is not None])).float().to(self.__device)
-        actions = torch.from_numpy(np.vstack([e.action for e in experiences if e is not None])).float().to(self.__device)
-        rewards = torch.from_numpy(np.vstack([e.reward for e in experiences if e is not None])).float().to(self.__device)
-        next_states = torch.from_numpy(np.vstack([e.next_state for e in experiences if e is not None])).float().to(self.__device)
-        dones = torch.from_numpy(np.vstack([e.done for e in experiences if e is not None]).astype(np.uint8)).float().to(self.__device)
+        states = torch.from_numpy(np.stack([e.state for e in experiences if e is not None])).float().to(self.__device)
+        actions = torch.from_numpy(np.stack([e.action for e in experiences if e is not None])).float().to(self.__device)
+        rewards = torch.from_numpy(np.stack([e.reward for e in experiences if e is not None])).float().to(self.__device)
+        next_states = torch.from_numpy(np.stack([e.next_state for e in experiences if e is not None])).float().to(self.__device)
+        dones = torch.from_numpy(np.stack([e.done for e in experiences if e is not None]).astype(np.uint8)).float().to(self.__device)
 
         return states, actions, rewards, next_states, dones
 
@@ -76,11 +76,11 @@ class PrioritizedReplayBuffer:
             probs.append(1. / size)
         self.__deque.clear()
 
-        states = torch.from_numpy(np.vstack([e.state for e in samples if e is not None])).float().to(self.__device)
-        actions = torch.from_numpy(np.vstack([e.action for e in samples if e is not None])).long().to(self.__device)
-        rewards = torch.from_numpy(np.vstack([e.reward for e in samples if e is not None])).float().to(self.__device)
-        next_states = torch.from_numpy(np.vstack([e.next_state for e in samples if e is not None])).float().to(self.__device)
-        dones = torch.from_numpy(np.vstack([e.done for e in samples if e is not None]).astype(np.uint8)).float().to(self.__device)
+        states = torch.from_numpy(np.stack([e.state for e in samples if e is not None])).float().to(self.__device)
+        actions = torch.from_numpy(np.stack([e.action for e in samples if e is not None])).long().to(self.__device)
+        rewards = torch.from_numpy(np.stack([e.reward for e in samples if e is not None])).float().to(self.__device)
+        next_states = torch.from_numpy(np.stack([e.next_state for e in samples if e is not None])).float().to(self.__device)
+        dones = torch.from_numpy(np.stack([e.done for e in samples if e is not None]).astype(np.uint8)).float().to(self.__device)
         idxs = torch.Tensor(idxs).long().to(self.__device)
         probs = torch.Tensor(probs).float().to(self.__device)
         return states, actions, rewards, next_states, dones, idxs, probs

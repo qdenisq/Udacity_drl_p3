@@ -173,9 +173,9 @@ class PPO:
             scores.extend(score)
 
             avg_score = np.asarray(scores)[max(-100, -len(scores)+1):].mean()
-            print("episode: {} | score:{:.4f} | avg_score: {}".format(
-                ep_idx, 0, avg_score))
-            if  avg_score > 0.5 and avg_score > best_agv_score:
+            print("episode: {} | avg_score: {:.2f}".format(
+                ep_idx, avg_score))
+            if avg_score > 0.5 and avg_score > best_agv_score:
                 best_agv_score = avg_score
                 dt = str(datetime.datetime.now().strftime("%m_%d_%Y_%I_%M_%p"))
                 model_fname = "../models/ppo_reacher_{}.pt".format(dt)

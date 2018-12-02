@@ -23,7 +23,7 @@ class OrnsteinUhlenbeckActionNoise:
         return self.X
 
 
-class DDPG:
+class MADDPG:
     def __init__(self, *args, agent=None, target_agent=None, **kwargs):
         self.agent = agent
         self.target_agent = target_agent
@@ -75,17 +75,18 @@ class DDPG:
         noise_gen.reset()
         mean_score = []
         scores = []
+        sigma = 0.2
         self.target_agent.eval()
         for episode in range(num_episodes):
+            sigma = min(0.05, sigma*0.99)
+            noise_gen.sigma = sigma
             state = env.reset(train_mode=True)
             # roll out
             j = 0
             score = np.zeros(env.get_num_agents())
-            self.agent.eval()
             while True:
                 # step
-                inp_state = np.concatenate([state, np.flip(state, axis=0)], axis=1)
-
+                self.agent.eval()
                 action = self.agent.act(torch.Tensor(state)).detach().cpu().numpy()
                 noise = [noise_gen.sample() for _ in range(env.get_num_agents())]
                 noised_action = action + noise
@@ -95,9 +96,7 @@ class DDPG:
                 score += reward
 
                 # add experience to replay buffer
-                for i in range(action.shape[0]):
-                    self.replay_buffer.add(state[i], action[i], reward[i],
-                                           next_state[i], done[i])
+                self.replay_buffer.add(state, action, reward, next_state, done)
 
                 state = next_state
 
@@ -108,18 +107,21 @@ class DDPG:
                 # sample minibatch
                 states, actions, rewards, next_states, dones = self.replay_buffer.sample()
                 # compute critic loss
-                target_actions = self.target_agent.act(next_states)
-                target_Q = rewards + self.__discount * self.target_agent.Q(next_states, target_actions) * (1 - dones)
-                Q = self.agent.Q(states, actions)
-                critic_loss = (Q - target_Q).pow(2).mean()
+                target_actions = self.target_agent.act(next_states.view(-1, env.get_state_dim()))
+                target_Q = rewards + self.__discount * \
+                                                    self.target_agent.Q(next_states.view(self.__minibatch, -1),
+                                                                        target_actions.view(self.__minibatch, -1)) \
+                                                    * (torch.ones(self.__minibatch) - dones.max(dim=-1)[0]).unsqueeze_(dim=1)
+                Q = self.agent.Q(states.view(self.__minibatch, -1), actions.view(self.__minibatch, -1))
+                critic_loss = (Q.view(-1,1) - target_Q.view(-1,1)).pow(2).mean()
                 # update critic
                 self.critic_optim.zero_grad()
                 critic_loss.backward()
                 self.critic_optim.step()
 
                 # compute actor objective
-                actor_actions = self.agent.act(states)
-                Q = self.agent.Q(states, actor_actions)
+                actor_actions = self.agent.act(states.view(-1, env.get_state_dim()))
+                Q = self.agent.Q(states.view(self.__minibatch, -1), actor_actions.view(self.__minibatch, -1))
                 actor_objective = -Q.mean()
                 # update actor
                 self.actor_optim.zero_grad()
@@ -132,6 +134,6 @@ class DDPG:
                 if np.any(done):
                     break
 
-            print("episode: {:d} | score: {} | avg_score: {:.2f}".format(episode, score, np.mean(scores[max(-100, -len(scores)+1):])))
             scores.append(max(score))
+            print("episode: {:d} | score: {} | avg_score: {:.2f}".format(episode, score, np.mean(scores[max(-100, -len(scores)+1):])))
         return scores

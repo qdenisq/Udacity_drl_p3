@@ -45,8 +45,8 @@ class TennisEnvironment:
         self.__brain_name = self.__env.brain_names[0]
         env_info = self.__env.reset()[self.__brain_name]
         print(env_info)
-        self.__num_agents = len(env_info.agents)
-        self.__state_dim = self.__env.brains[self.__brain_name].vector_observation_space_size
+        self.__num_agents = env_info.vector_observations.shape[0]
+        self.__state_dim = env_info.vector_observations.shape[1]
         self.__action_dim = self.__env.brains[self.__brain_name].vector_action_space_size
 
     def step(self, action):

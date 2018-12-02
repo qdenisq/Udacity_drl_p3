@@ -1,6 +1,6 @@
 import json
 from pprint import pprint
-from src.environment import ReacherEnvironment
+from src.environment import TennisEnvironment
 from src.ppo import PPO
 from src.models import SimplePPOAgent
 import torch
@@ -15,7 +15,7 @@ def train(*args, **kwargs):
     device = 'cpu'
     kwargs['ppo']['device'] = device
 
-    env = ReacherEnvironment(**kwargs['env'])
+    env = TennisEnvironment(**kwargs['env'])
     env.reset(train_mode=True)
 
     state_dim = env.get_state_dim()

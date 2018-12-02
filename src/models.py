@@ -6,7 +6,7 @@ import torch
 
 def init_weights(m):
     if type(m) == Linear:
-        xavier_uniform_(m.weight, gain=1)
+        xavier_uniform_(m.weight, gain=0.1)
 
 
 
@@ -62,9 +62,9 @@ class SimplePPOAgent(Module):
         return [*self.critic_bn.parameters(), *self.critic_linears.parameters(), *self.v.parameters()]
 
 
-class SimpleDDPGAgent(Module):
+class SimpleMADDPGAgent(Module):
     def __init__(self, **kwargs):
-        super(SimpleDDPGAgent, self).__init__()
+        super(SimpleMADDPGAgent, self).__init__()
 
         hidden_size = kwargs['hidden_size']
         # actor
@@ -74,10 +74,11 @@ class SimpleDDPGAgent(Module):
         self.action = Linear(hidden_size[-1], kwargs['action_dim'])
 
         # critic
-        self.critic_bn = BatchNorm1d(kwargs['state_dim'] + kwargs['action_dim'])
-        self.critic_linears = ModuleList([Linear(kwargs['state_dim'] + kwargs['action_dim'], hidden_size[0])])
+        # hidden_size = [h*2 for h in hidden_size]
+        self.critic_bn = BatchNorm1d((kwargs['state_dim'] + kwargs['action_dim'])*kwargs['num_agents'])
+        self.critic_linears = ModuleList([Linear((kwargs['state_dim'] + kwargs['action_dim'])*kwargs['num_agents'], hidden_size[0])])
         self.critic_linears.extend([Linear(hidden_size[i - 1], hidden_size[i]) for i in range(1, len(hidden_size))])
-        self.q = Linear(hidden_size[-1], 1)
+        self.q = Linear(hidden_size[-1], kwargs['num_agents'])
 
         self.relu = ReLU()
         self.sigmoid = Sigmoid()
@@ -104,8 +105,8 @@ class SimpleDDPGAgent(Module):
         return q
 
     def get_actor_parameters(self):
-        return list(self.actor_linears.parameters()) + list(self.action.parameters())
+        return list(self.actor_linears.parameters()) + list(self.action.parameters()) + list(self.actor_bn.parameters())
 
     def get_critic_parameters(self):
-        return list(self.critic_linears.parameters()) + list(self.q.parameters())
+        return list(self.critic_linears.parameters()) + list(self.q.parameters()) + list(self.critic_bn.parameters())
 
