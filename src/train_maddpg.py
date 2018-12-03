@@ -2,8 +2,8 @@ import json
 from pprint import pprint
 import numpy as np
 from src.environment import TennisEnvironment
-from src.maddpg import MADDPG
-from src.models import SimpleMADDPGAgent
+from src.maddpg import MADDPG1
+from src.models import SimpleMADDPGAgent1
 import datetime
 import matplotlib.pyplot as plt
 import torch
@@ -23,9 +23,9 @@ def train(*args, **kwargs):
 
     kwargs['ddpg']['device'] = 'cpu'
 
-    agent = SimpleMADDPGAgent(**kwargs['agent'])
-    target_agent = SimpleMADDPGAgent(**kwargs['agent'])
-    alg = MADDPG(agent=agent, target_agent=target_agent, **kwargs['ddpg'])
+    agent = SimpleMADDPGAgent1(**kwargs['agent'])
+    target_agent = SimpleMADDPGAgent1(**kwargs['agent'])
+    alg = MADDPG1(agent=agent, target_agent=target_agent, **kwargs['ddpg'])
     scores = alg.train(env, 4000)
 
     dt = str(datetime.datetime.now().strftime("%m_%d_%Y_%I_%M_%p"))

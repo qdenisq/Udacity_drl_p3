@@ -6,7 +6,7 @@
 
 "agent":{
 	"seed":0,
-	"hidden_size": [128, 32]
+	"hidden_size": [128, 64]
 	},
 "ppo":{
 	"discount": 0.99,
@@ -14,8 +14,22 @@
 	"epsilon": 0.2,
 	"beta": 0.0,
 	"learning_rate_eps": 1e-5,
-	"actor_lr": 0.0003,
-	"critic_lr": 0.0003,
+	"actor_lr": 0.0005,
+	"critic_lr": 0.0005,
+	"minibatch_size": 256,
+	"num_epochs_actor": 10,
+	"num_epochs_critic": 10,
+	"clip_grad": 5
+	},
+"mappo":{
+	"discount": 0.99,
+	"lambda": 0.0,
+	"epsilon": 0.2,
+	"beta": 0.0,
+	"learning_rate_eps": 1e-5,
+	"actor_lr": 0.01,
+	"critic_lr": 0.01,
+	"batch_size": 2000,
 	"minibatch_size": 256,
 	"num_epochs_actor": 10,
 	"num_epochs_critic": 10,
@@ -26,8 +40,9 @@
 	"tau": 0.001,
 	"buffer_size": 1e5,
 	"minibatch_size": 256,
-	"seed": 1234,
+	"seed": 124,
 	"actor_lr": 0.0003,
-	"critic_lr": 0.0003
+	"critic_lr": 0.0003,
+	"learning_rate_eps": 1e-5
 	}
 }
