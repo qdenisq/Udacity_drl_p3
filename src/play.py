@@ -3,7 +3,7 @@ from pprint import pprint
 import torch
 import numpy as np
 import argparse
-from src.environment import ReacherEnvironment
+from src.environment import TennisEnvironment
 
 
 def play(*args, **kwargs):
@@ -11,7 +11,7 @@ def play(*args, **kwargs):
 
     fname = args[0]
     device = 'cpu'
-    env = ReacherEnvironment(**kwargs['env'])
+    env = TennisEnvironment(**kwargs['env'])
 
     agent = torch.load(fname).to(device)
     print(agent)

@@ -1,4 +1,4 @@
-# Udacity Deep Reinforcement Learning - Continuous Control (Project 2)
+# Udacity Deep Reinforcement Learning: Collaboration and Competition (Project 3)
 ## Report
 
 In this project, the goal is to teach an agent to play table tennis.
@@ -20,7 +20,6 @@ The environment is considered solved, when the average (over 100 episodes)
 ---
 ## Algorithms
 For this project I've implemented PPO.
-
 
 ### PPO
 PPO algorithm is summarised below:
@@ -50,7 +49,7 @@ Unfortunately, MADDPG doesn't stably converge and MAPPO shows much slower conver
 ## Results:
 
 ### PPO
-![ddpg algorithm](reports/ppo_reacher_12_01_2018_06_01_PM.png)
+![ppo algorithm](reports/ppo_tennis_12_01_2018_06_01_PM.png)
 
 It can be seen that in both cases the environment was solved in less than 150 episodes.
 
