@@ -14,6 +14,7 @@ class PPO:
         self.discount = kwargs['discount']
         self.lmbda = kwargs['lambda']
         self.minibatch_size = kwargs['minibatch_size']
+        self.bacth_size = kwargs['batch_size']
         self.epsilon = kwargs['epsilon']
         self.beta = kwargs['beta']
         self.clip_grad = kwargs['clip_grad']
@@ -46,7 +47,7 @@ class PPO:
         t = 0
         last_t = 0
         k = 0
-        while t < 2000:
+        while t < self.bacth_size:
             state = env.reset()
             k += 1
             while True:

@@ -16,6 +16,7 @@
 	"learning_rate_eps": 1e-5,
 	"actor_lr": 0.0005,
 	"critic_lr": 0.0005,
+	"batch_size": 1000,
 	"minibatch_size": 256,
 	"num_epochs_actor": 10,
 	"num_epochs_critic": 10,

@@ -282,10 +282,6 @@ class SimpleMADDPGAgent1(Module):
         return self.critic.parameters()
 
 
-
-
-
-
 class SimpleDDPGAgent(Module):
     def __init__(self, **kwargs):
         super(SimpleDDPGAgent, self).__init__()
